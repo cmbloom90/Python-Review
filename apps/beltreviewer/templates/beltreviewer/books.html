@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books Home</title>
+</head>
+<body>
+	{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li
+            {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+	<h1>Welcome, {{user.alias}} </h1>
+
+
+
+	<a href="/"><button>Add a book and review</button></a>
+	<a href="/logout"><button>Logout</button></a>
+
+	<h2>Recent Book Reviews:</h2>
+
+		<div>
+			{% for reviews in other_reviews %}
+				<h2><a href="/books/{{reviews.reviewed_book.id}}">{{reviews.reviewed_book.title}}</a></h2>
+				<p>{{reviews.rating}}: Stars</p><br>
+				<p>{{reviews.user.alias}}</p><p>{{reviews.description}}</p><br>
+
+			{% endfor %}
+		</div>
+
+
+
+
+</body>
+</html>
